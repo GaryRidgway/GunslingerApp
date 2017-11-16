@@ -18,10 +18,10 @@ function setup() {
 }
 function draw() {
   background(bgColor);
-  //gunBarrel.show();
-  //gCount.show();
-  //MNU.showMenuCollapsed();
-  MNU.showFullMenu();
+  gunBarrel.show();
+  gCount.show();
+  MNU.showMenuCollapsed();
+  //MNU.showFullMenu();
 }
 
 function windowResized() {
@@ -56,7 +56,7 @@ function dpos() {
 	cScale = loadScale;
 	isTooSmall(windowWidth/2);
 	lpos = windowWidth/2;
-    tpos = windowWidth/2;  
+    tpos = windowWidth/2;
   }
 }
 

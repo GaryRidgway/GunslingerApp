@@ -1,18 +1,18 @@
 function menu(scale, bgColor) {
 	bHeight = windowHeight/10;
-	
+
 	this.showMenuCollapsed = function(){
 		// Draw the menu Hamburger.
 		push();
 		fill('#f1f1f1');
 		stroke('#f1f1f1');
 		strokeWeight(3.5*scale);
-		line(windowWidth-10*scale, 10*scale, windowWidth-35*scale, 10*scale);
-		line(windowWidth-10*scale, 18*scale, windowWidth-35*scale, 18*scale);
-		line(windowWidth-10*scale, 26*scale, windowWidth-35*scale, 26*scale);
+		line(windowWidth-10*scale, windowHeight/10/2-12, windowWidth-35*scale, windowHeight/10/2-12);
+		line(windowWidth-10*scale, windowHeight/10/2, windowWidth-35*scale, windowHeight/10/2);
+		line(windowWidth-10*scale, windowHeight/10/2+12, windowWidth-35*scale, windowHeight/10/2+12);
 		pop();
 	}
-	
+
 	this.showFullMenu = function() {
 		push();
 		push();
@@ -39,15 +39,15 @@ function menu(scale, bgColor) {
 		fill('#a0a0a0');
 		stroke('#a0a0a0');
 		strokeWeight(3.5*scale);
-		line(windowWidth-10*scale, 10*scale, windowWidth-35*scale, 10*scale);
-		line(windowWidth-10*scale, 18*scale, windowWidth-35*scale, 18*scale);
-		line(windowWidth-10*scale, 26*scale, windowWidth-35*scale, 26*scale);
+		line(windowWidth-10*scale, windowHeight/10/2-12, windowWidth-35*scale, windowHeight/10/2-12);
+		line(windowWidth-10*scale, windowHeight/10/2, windowWidth-35*scale, windowHeight/10/2);
+		line(windowWidth-10*scale, windowHeight/10/2+12, windowWidth-35*scale, windowHeight/10/2+12);
 		pop();
-		
-		
-		
-		
-		
+
+
+
+
+
 		pop();
 	}
 }
