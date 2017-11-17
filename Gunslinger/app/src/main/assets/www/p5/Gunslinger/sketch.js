@@ -14,14 +14,17 @@ function setup() {
   dpos();
   gunBarrel = new barrel(lpos, tpos, 6, cScale, bgColor);
   gCount = new gritCounter(windowWidth-30*loadScale, windowHeight-30*loadScale, 3)
-  MNU = new menu(loadScale, bgColor);
+  MNU = new menu(loadScale, bgColor, gunBarrel);
 }
 function draw() {
   background(bgColor);
-  gunBarrel.show();
-  gCount.show();
-  //MNU.showMenuCollapsed();
-  MNU.showFullMenu();
+  if(MNU.dMode == 1) {
+	gunBarrel.show();
+    gCount.show();
+    MNU.showMenuCollapsed();
+  } else {
+	MNU.showFullMenu();  
+  }
 }
 
 function windowResized() {
@@ -29,6 +32,7 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   gunBarrel.updatePos(lpos, tpos, cScale);
   gCount.updatePos(windowWidth-60, windowHeight-60);
+  MNU.updateButton();
 }
 
 function mousePressed() {

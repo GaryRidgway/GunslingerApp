@@ -41,16 +41,20 @@ button {
 	border: none;
 	border-radius: 5px;
 	padding: 0;
-	
 }
 
 button:active {
 	background-color: rgba(136,136,136, 0.2);
-	
 }
 
 .add {
 	border-radius: 50%;
+}
+
+.shoot, .reload {
+	border: 2px solid #f1f1f1;
+	color: #f1f1f1;
+	
 }
 
 

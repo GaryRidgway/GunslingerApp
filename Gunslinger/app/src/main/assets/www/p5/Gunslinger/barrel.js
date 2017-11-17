@@ -82,24 +82,6 @@ function barrel(x ,y, chambers, scale, bgColor) {
       counter++;
     }
     pop();
-    // Draw the Shoot and Reload buttons.
-    push();
-    rotate(TAU/this.chambers/this.rotationSpeed*this.rotateCounter);
-    rotate(TAU/this.chambers/2);
-    stroke('#929292');
-    fill('#d69e28');
-    rect(-100*this.scale, 120*this.scale, 90*this.scale, 50*this.scale, 5);
-    fill('#af623e');
-    rect(10*this.scale, 120*this.scale, 90*this.scale, 50*this.scale, 5);
-    push();
-    textAlign(CENTER, CENTER);
-    textSize(16*this.scale);
-    fill(255);
-    stroke('#929292');
-    text('Shoot', -100*this.scale+(90*this.scale/2), 120*this.scale+(50*this.scale/2));
-    text('Reload', 10*this.scale+(90*this.scale/2), 120*this.scale+(50*this.scale/2));
-    pop();
-    pop();
     pop();
 
   }
@@ -119,6 +101,18 @@ function barrel(x ,y, chambers, scale, bgColor) {
       this.cChamber = (this.cChamber+1)%this.chambers;
     }
   }
+  this.reload = function() {
+	  if(this.rotationCycle == 0&&
+		this.bullets.includes(0)){
+	      for (i = 0; i < this.bullets.length; i++) {
+            // Replace all the bullets used.
+            this.bullets[i] = 1;
+            // Reset all the bullets.
+            this.rolls[i] = null;
+          }
+          this.rotationCycle+= this.rotationSpeed*this.chambers;
+		}
+  }
 
   this.checkClicked = function() {
     push();
@@ -127,23 +121,15 @@ function barrel(x ,y, chambers, scale, bgColor) {
         mouseX < this.pos[0]-100*this.scale + 90*this.scale&&
         mouseY > this.pos[1]+120*this.scale &&
         mouseY < this.pos[1]+120*this.scale + 50*this.scale) {
-      this.shoot();
+
     }
     // Reload.
     else if (mouseX > this.pos[0]+10*this.scale &&
         mouseX < this.pos[0]+10*this.scale + 90*this.scale&&
         mouseY > this.pos[1]+120*this.scale &&
-        mouseY < this.pos[1]+120*this.scale + 50*this.scale&&
-		this.rotationCycle == 0&&
-		this.bullets.includes(0)) {
-	  
-      for (i = 0; i < this.bullets.length; i++) {
-        // Replace all the bullets used.
-        this.bullets[i] = 1;
-        // Reset all the bullets.
-        this.rolls[i] = null;
-      }
-      this.rotationCycle+= this.rotationSpeed*this.chambers;
+        mouseY < this.pos[1]+120*this.scale + 50*this.scale) {
+	  this.reload();
+     
     }
     pop();
   }

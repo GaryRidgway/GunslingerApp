@@ -1,29 +1,38 @@
-function menu(scale, bgColor, ) {
+function menu(scale, bgColor, gunBarrel) {
 	bHeight = windowHeight/10;
-	this.dMode = 1;
+	this.dMode = 0;
+	this.gunBarrel = gunBarrel;
 	
-	this.button = createButton('')
+	this.hamburgerButton = createButton('')
                  .mousePressed(() => this.displaySwap())
-                 .size(25*scale+18, 24+18)
-				 .position(windowWidth-35*scale-9,
-						   windowHeight/10/2-12-9)
+                 .size(25*scale+windowHeight/10/7+windowHeight/10/7/2*2, windowHeight/10/7*5+windowHeight/10/7)
+				 .position(windowWidth-35*scale-windowHeight/10/7/2*2,
+						   windowHeight/10/2-windowHeight/10/7*2-windowHeight/10/7/2-windowHeight/10/7/2)
 				.addClass('hamburger');
 	this.createMenuButtons = [
 		createButton('')
-		.mousePressed(() => this.displaySwap())
+		.mousePressed(() => function(){})
 		.size(bHeight/5*4+2, bHeight/5*4+2)
 		.position(bHeight/2-bHeight/5*2-1,
 				  bHeight/2-bHeight/5*2-1)
 		.addClass('add')
 	];
 	this.shootPageButtons = [
-		createButton('')
-		.mousePressed(() => this.displaySwap())
-		.size(bHeight/5*4+2, bHeight/5*4+2)
-		.position(bHeight/2-bHeight/5*2-1,
-				  bHeight/2-bHeight/5*2-1)
-		.addClass('shoot')
+		createButton('shoot')
+		  .mousePressed(() => this.gunBarrel.shoot())
+		  .size(90*this.gunBarrel.scale, 50*this.gunBarrel.scale)
+		  .position(this.gunBarrel.pos[0]-100*this.gunBarrel.scale,
+		  		  this.gunBarrel.pos[1]+120*this.gunBarrel.scale)
+		  .addClass('shoot'),
+		createButton('reload')
+		  .mousePressed(() => this.gunBarrel.reload())
+		  .size(90*this.gunBarrel.scale, 50*this.gunBarrel.scale)
+		  .position(this.gunBarrel.pos[0]+10*this.gunBarrel.scale,
+		  		  this.gunBarrel.pos[1]+120*this.gunBarrel.scale)
+		  .addClass('reload')
 	];
+	$(".shoot").css("font-size", (16*this.gunBarrel.scale).toString().concat('px'));
+	$(".reload").css("font-size", (16*this.gunBarrel.scale).toString().concat('px'));
 	
 	
 
@@ -33,9 +42,9 @@ function menu(scale, bgColor, ) {
 		fill('#f1f1f1');
 		stroke('#f1f1f1');
 		strokeWeight(3.5*scale);
-		line(windowWidth-10*scale, windowHeight/10/2-12, windowWidth-35*scale, windowHeight/10/2-12);
+		line(windowWidth-10*scale, windowHeight/10/7*2-windowHeight/10/7/2, windowWidth-35*scale, windowHeight/10/7*2-windowHeight/10/7/2);
 		line(windowWidth-10*scale, windowHeight/10/2, windowWidth-35*scale, windowHeight/10/2);
-		line(windowWidth-10*scale, windowHeight/10/2+12, windowWidth-35*scale, windowHeight/10/2+12);
+		line(windowWidth-10*scale, windowHeight/10/7*6-windowHeight/10/7/2, windowWidth-35*scale, windowHeight/10/7*6-windowHeight/10/7/2);
 		pop();
 	}
 
@@ -65,9 +74,9 @@ function menu(scale, bgColor, ) {
 		fill('#a0a0a0');
 		stroke('#a0a0a0');
 		strokeWeight(3.5*scale);
-		line(windowWidth-10*scale, windowHeight/10/2-12, windowWidth-35*scale, windowHeight/10/2-12);
+		line(windowWidth-10*scale, windowHeight/10/7*2-windowHeight/10/7/2, windowWidth-35*scale, windowHeight/10/7*2-windowHeight/10/7/2);
 		line(windowWidth-10*scale, windowHeight/10/2, windowWidth-35*scale, windowHeight/10/2);
-		line(windowWidth-10*scale, windowHeight/10/2+12, windowWidth-35*scale, windowHeight/10/2+12);
+		line(windowWidth-10*scale, windowHeight/10/7*6-windowHeight/10/7/2, windowWidth-35*scale, windowHeight/10/7*6-windowHeight/10/7/2);
 		pop();
 
 
@@ -82,4 +91,24 @@ function menu(scale, bgColor, ) {
 		if(this.dMode == 1){this.dMode = 0;}
 		else{this.dMode = 1;}
 	}
+	
+	this.updateButton = function() {
+		bHeight = windowHeight/10;
+		this.hamburgerButton.position(windowWidth-35*scale-windowHeight/10/7/2*2,
+						              windowHeight/10/2-windowHeight/10/7*2-windowHeight/10/7/2-windowHeight/10/7/2)
+							.size(25*scale+windowHeight/10/7+windowHeight/10/7/2*2, windowHeight/10/7*5+windowHeight/10/7);
+		this.createMenuButtons[0].position(bHeight/2-bHeight/5*2-1,
+				                           bHeight/2-bHeight/5*2-1)
+								 .size(bHeight/5*4+2, bHeight/5*4+2);
+		this.shootPageButtons[0].position(this.gunBarrel.pos[0]-100*this.gunBarrel.scale,
+		  		                          this.gunBarrel.pos[1]+120*this.gunBarrel.scale)
+								.size(90*this.gunBarrel.scale, 50*this.gunBarrel.scale);
+		$(".shoot").css("font-size", (16*this.gunBarrel.scale).toString().concat('px'));
+		this.shootPageButtons[1].position(this.gunBarrel.pos[0]+10*this.gunBarrel.scale,
+		  		                          this.gunBarrel.pos[1]+120*this.gunBarrel.scale)
+		
+								.size(90*this.gunBarrel.scale, 50*this.gunBarrel.scale);
+		$(".reload").css("font-size", (16*this.gunBarrel.scale).toString().concat('px'));
+	}
 }
+
