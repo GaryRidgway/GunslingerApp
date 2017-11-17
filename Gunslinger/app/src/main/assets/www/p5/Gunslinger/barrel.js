@@ -133,7 +133,10 @@ function barrel(x ,y, chambers, scale, bgColor) {
     else if (mouseX > this.pos[0]+10*this.scale &&
         mouseX < this.pos[0]+10*this.scale + 90*this.scale&&
         mouseY > this.pos[1]+120*this.scale &&
-        mouseY < this.pos[1]+120*this.scale + 50*this.scale) {
+        mouseY < this.pos[1]+120*this.scale + 50*this.scale&&
+		this.rotationCycle == 0&&
+		this.bullets.includes(0)) {
+	  
       for (i = 0; i < this.bullets.length; i++) {
         // Replace all the bullets used.
         this.bullets[i] = 1;
@@ -145,4 +148,25 @@ function barrel(x ,y, chambers, scale, bgColor) {
     pop();
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

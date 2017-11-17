@@ -1,5 +1,31 @@
-function menu(scale, bgColor) {
+function menu(scale, bgColor, ) {
 	bHeight = windowHeight/10;
+	this.dMode = 1;
+	
+	this.button = createButton('')
+                 .mousePressed(() => this.displaySwap())
+                 .size(25*scale+18, 24+18)
+				 .position(windowWidth-35*scale-9,
+						   windowHeight/10/2-12-9)
+				.addClass('hamburger');
+	this.createMenuButtons = [
+		createButton('')
+		.mousePressed(() => this.displaySwap())
+		.size(bHeight/5*4+2, bHeight/5*4+2)
+		.position(bHeight/2-bHeight/5*2-1,
+				  bHeight/2-bHeight/5*2-1)
+		.addClass('add')
+	];
+	this.shootPageButtons = [
+		createButton('')
+		.mousePressed(() => this.displaySwap())
+		.size(bHeight/5*4+2, bHeight/5*4+2)
+		.position(bHeight/2-bHeight/5*2-1,
+				  bHeight/2-bHeight/5*2-1)
+		.addClass('shoot')
+	];
+	
+	
 
 	this.showMenuCollapsed = function(){
 		// Draw the menu Hamburger.
@@ -48,6 +74,12 @@ function menu(scale, bgColor) {
 
 
 
+
 		pop();
+	}
+	
+	this.displaySwap = function() {
+		if(this.dMode == 1){this.dMode = 0;}
+		else{this.dMode = 1;}
 	}
 }

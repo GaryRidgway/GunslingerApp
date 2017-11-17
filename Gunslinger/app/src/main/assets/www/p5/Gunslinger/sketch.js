@@ -20,8 +20,8 @@ function draw() {
   background(bgColor);
   gunBarrel.show();
   gCount.show();
-  MNU.showMenuCollapsed();
-  //MNU.showFullMenu();
+  //MNU.showMenuCollapsed();
+  MNU.showFullMenu();
 }
 
 function windowResized() {
