@@ -88,8 +88,26 @@ function menu(scale, bgColor, gunBarrel) {
 	}
 	
 	this.displaySwap = function() {
-		if(this.dMode == 1){this.dMode = 0;}
-		else{this.dMode = 1;}
+		// The shoot page.
+		if(this.dMode == 1){
+			this.dMode = 0;
+			this.createMenuButtons.forEach(function(element){
+				element.show();
+			});
+			this.shootPageButtons.forEach(function(element){
+				element.hide();
+			});
+			}
+		// The main menu page.
+		else{
+			this.dMode = 1;
+			this.createMenuButtons.forEach(function(element){
+				element.hide();
+			});
+			this.shootPageButtons.forEach(function(element){
+				element.show();
+			});
+			}
 	}
 	
 	this.updateButton = function() {

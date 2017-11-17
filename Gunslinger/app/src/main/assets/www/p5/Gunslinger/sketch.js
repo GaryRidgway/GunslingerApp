@@ -4,6 +4,7 @@ var loadScale;
 var cScale;
 
 var bgColor = '#181818';
+var rawFile
 
 
 
@@ -15,6 +16,9 @@ function setup() {
   gunBarrel = new barrel(lpos, tpos, 6, cScale, bgColor);
   gCount = new gritCounter(windowWidth-30*loadScale, windowHeight-30*loadScale, 3)
   MNU = new menu(loadScale, bgColor, gunBarrel);
+  this.readTextFile('https://data.its.uiowa.edu/laundry/allRooms.php');
+  //this.readTextFile('../JSON/example.json');
+console.log(rawFile);
 }
 function draw() {
   background(bgColor);
@@ -68,4 +72,39 @@ function isTooSmall(length) {
 	if(length<200*cScale/2){
       cScale = cScale*(length/cScale)/200*1.8
 	}
+}
+
+this.readTextFile = function(file)
+{
+    rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+            }
+        }
+    }
+    rawFile.send(null);
+}
+
+function isJson(item) {
+    item = typeof item !== "string"
+        ? JSON.stringify(item)
+        : item;
+
+    try {
+        item = JSON.parse(item);
+    } catch (e) {
+        return false;
+    }
+
+    if (typeof item === "object" && item !== null) {
+        return true;
+    }
+
+    return false;
 }
